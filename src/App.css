@@ -1,8 +1,28 @@
 .App {
   text-align: center;
-  display: flex;
+  
 }
 
-.memo-file-container {
+.main {
+  display: flex;
+}
+.memo-file-container{
   width: 35%;
+}
+
+.memo {
+  list-style: none;
+}
+/* .memo-title {
+  border:
+} */
+
+.memo-box {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.memo-field {
+  width: 100%;
 }

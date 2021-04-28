@@ -3,9 +3,16 @@ import {addContents, ADD_CONTENTS} from './actions'
 const INITIAL_STATE = {
     memoList:[
         {
-            id:"",
+            // id:"",
             title:"Test",
-            contants:"料理レシピ"
+            contants:"料理レシピ",
+            Time: ""
+        },
+        {
+            // id:"",
+            title:"Check2",
+            contants:"Difficult",
+            Time: ""
         }
     ]
 }

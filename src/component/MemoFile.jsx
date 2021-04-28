@@ -6,11 +6,11 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
 import SearchIcon from '@material-ui/icons/Search';
-const MemoFile = ({titleProps}) => {
-    console.log({titleProps})
+const MemoFile = ({contentsProps}) => {
+    console.log("titleProps;",{contentsProps})
     return(
     <div className="memo-file-container">
-        <h1>Memo</h1>
+        
         <Icon color="primary">add_circle</Icon>
         {/* <Fab color="primary" aria-label="add"> */}
             <AddIcon />
@@ -21,16 +21,16 @@ const MemoFile = ({titleProps}) => {
         {/* </Fab> */}
         <div className="memo-file">
             <ul className="memo">
-                <li>
-                    Cook Recepe
-                    <hr />
-                </li>
-                
+            
+            {/* onclick functionでクリックしたら右のコンポーネントに出力できるようにする */}
                 {
-                    <li>
-                        {titleProps[0].title}
+                    contentsProps.map(({ id, title })=> (
+                    <li key={id} >
+                        {title}
                         <hr /> 
                     </li>
+
+                    ))
                 }
             </ul>
         </div>
@@ -43,7 +43,7 @@ const MemoFile = ({titleProps}) => {
 const mapStateToProps = (state) => {
     console.log("memoState; ",state);
     return {
-        titleProps: state.contents.memoList
+        contentsProps: state.contents.memoList
     }
 }
 
