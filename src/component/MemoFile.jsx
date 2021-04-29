@@ -11,7 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const MemoFile = ({contentsProps, setContents, currentProps}) => {
     console.log("titleProps;",contentsProps)
-    console.log("titleProps2;",currentProps)
+    console.log("currentProps2;",currentProps)
     // const [currentContent, setCurrentContent] = useState('')
 
     // useEffect(() => {
@@ -55,12 +55,12 @@ const mapStateToProps = (state) => {
     console.log("memoStateee; ",state);
     return {
         contentsProps: state.contents.memoList,
-        currentProps: state.contents
+        currentProps: state.contents.currentMemo
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    setContents: (content) => dispatch(setContents(content))
+   setContents:  (content) => dispatch(setContents(content))
 })
 
 // connect method here

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,11 +8,16 @@ import { MemoryRouter } from 'react-router';
 
 
 
-const MemoContents = ({contentsProps, addContents, setContents}) => {
+const MemoContents = ({contentsProps, addContents, setContents, currentProps}) => {
     // メモの内容が変わった時にstateのリストに追加と更新をする
     // デフォルトは空欄かひとつ目のメモの内容が出るようにする
     const [title, setTitle] = useState('')
     const [memo, setMemo ]  = useState('')
+    const [current, setCurrent] = useState('')
+
+    useEffect(() => {
+        setCurrent(currentProps)
+    }, [currentProps])
 
     const handleTitleChange = (e) => {
         e.preventDefault()
@@ -34,9 +39,9 @@ const MemoContents = ({contentsProps, addContents, setContents}) => {
     return (
         <>
         <form >
-        <TextField onChange={handleTitleChange} className="title" id="standard-basic" label="Title" defaultValue={setContents.title} />
+        <TextField onChange={handleTitleChange} className="title" id="standard-basic" label="Title" value={current.title} />
         {/* タイトルファイルのとこ押すとフォームの中身がメモの内容で見れるようにする */}
-        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30" defaultValue={setContents.contents} ></textarea>
+        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30" defaultValue={current.contents} ></textarea>
         {/* cols="80" rows="30" */}
         <button onClick={ ()=>clickHandler(title,memo)}>Add</button>
       </form>

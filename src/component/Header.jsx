@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addContents } from '../redux/actions';
+import { addContents, setContents } from '../redux/actions';
 
 import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
@@ -8,10 +8,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
 import SearchIcon from '@material-ui/icons/Search';
 
-const Header = ({contentsProps}) => {
+const Header = ({currentProps, setContents}) => {
 
-    const clickHandler = (contentsProps) => {
-        
+    const clickHandler = (currentProps) => {
+        setContents(currentProps)
     }
 
     return (
@@ -19,7 +19,7 @@ const Header = ({contentsProps}) => {
             {/* style={{float:"right", marginRight:"5rem"}} */}
         {/* <Icon color="primary">add_circle</Icon> */}
         {/* <Fab color="primary" aria-label="add"> */}
-        <AddIcon />
+        <AddIcon onClick={clickHandler}/>
         {/* </Fab> */}
             <SearchIcon />
         {/* <Fab color="primary" > */}
@@ -30,12 +30,15 @@ const Header = ({contentsProps}) => {
     )
 }
 
-// const mapStateToProps = (state) => ({
-//     contentsProps: state.contents.memoList
-// })
-
-const mapDispatchToProps = (dispatch) => ({
-    addContents: (contens) => dispatch(addContents(contens))
+const mapStateToProps = (state) => ({
+    contentsProps: state.contents.memoList,
+    currentProps: state.contents.currentMemo
 })
 
-export default connect(null, mapDispatchToProps)(Header)
+const mapDispatchToProps = (dispatch) => ({
+    addContents: (contens) => dispatch(addContents(contens)),
+    setContents:  (content) => dispatch(setContents(content))
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
