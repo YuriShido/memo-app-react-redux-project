@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,18 +8,37 @@ import { MemoryRouter } from 'react-router';
 
 
 
-const MemoContents = () => {
+const MemoContents = ({contentsProps, addContents}) => {
+    // メモの内容が変わった時にstateのリストに追加と更新をする
+    // デフォルトは空欄かひとつ目のメモの内容が出るようにする
+    const [title, setTitle] = useState('')
+    const [memo, setMemo ]  = useState('')
 
-    const handleChange = (e) => {
-        e.preventdefault()
+    const handleTitleChange = (e) => {
+        e.preventDefault()
+        setTitle(e.target.value)
+        console.log('title: ', title);
+    }
+
+    const handleMemoChange = (e) => {
+        e.preventDefault()
+        setMemo(e.target.value)
+        console.log("memo:", memo);
 
     }
+
+    const clickHandler = (title, memo) => {
+        addContents({title: title, contents: memo})
+    }
+
     return (
         <>
         <form >
-        <TextField onChange={handleChange} id="standard-basic" label="Title" />
-        <textarea className="memo-field" onChange={handleChange} name="" id="" cols="80" rows="30"></textarea>
-       
+        <TextField onChange={handleTitleChange} className="title" id="standard-basic" label="Title" defaultValue={contentsProps[0].title} />
+        {/* タイトルファイルのとこ押すとフォームの中身がメモの内容で見れるようにする */}
+        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30" defaultValue={contentsProps[0].contents}></textarea>
+        {/* cols="80" rows="30" */}
+        <button onClick={ ()=>clickHandler(title,memo)}>Add</button>
       </form>
 
          {/* <div className="memo-box">
@@ -31,13 +50,18 @@ const MemoContents = () => {
     )
 }
 
+const mapStateToProps = (state) => ({
+    contentsProps: state.contents.memoList
 
-
-const mapDispatchToProps = (dispatch) => ({
-    addContents: (contens) => dispatch(addContents(contens))
 })
 
-export default connect(null, mapDispatchToProps)(MemoContents)
+const mapDispatchToProps = (dispatch) => {
+    console.log(addContents);
+    return ({
+    addContents: (contents) => dispatch(addContents(contents))
+})}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MemoContents)
 
 // const mapDispatchToProps = (dispatch) => ({
 //     addItem: (item) => dispatch(addItem(item)),

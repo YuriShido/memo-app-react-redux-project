@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux'
 
 import { Fab } from '@material-ui/core';
@@ -8,26 +8,27 @@ import Icon from '@material-ui/core/Icon';
 import SearchIcon from '@material-ui/icons/Search';
 const MemoFile = ({contentsProps}) => {
     console.log("titleProps;",{contentsProps})
+    // const [currentContent, setCurrentContent] = useState('')
+
+    // useEffect(() => {
+    //     setCurrentContent(contentsProps)
+      
+    // }, [contentsProps])
+
     return(
     <div className="memo-file-container">
         
-        <Icon color="primary">add_circle</Icon>
-        {/* <Fab color="primary" aria-label="add"> */}
-            <AddIcon />
-        {/* </Fab> */}
-            <SearchIcon />
-        {/* <Fab color="primary" > */}
-            <DeleteIcon />
-        {/* </Fab> */}
+        <h2 className="memo-list">Memo list</h2>
         <div className="memo-file">
+
             <ul className="memo">
             
             {/* onclick functionでクリックしたら右のコンポーネントに出力できるようにする */}
                 {
-                    contentsProps.map(({ id, title })=> (
-                    <li key={id} >
+                    contentsProps.map(({title }, id )=> (
+                    <li key={id} className="memo-item" >
                         {title}
-                        <hr /> 
+                        {/* <hr />  */}
                     </li>
 
                     ))

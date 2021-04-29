@@ -1,17 +1,36 @@
-.App {
+.app-title {
   text-align: center;
   
 }
 
 .main {
+  width: 100%;
   display: flex;
+  justify-content: space-around;
 }
+
+.memo-list {
+  text-align: center;
+}
+
 .memo-file-container{
   width: 35%;
+  /* text-align: center; */
 }
 
 .memo {
   list-style: none;
+  padding-left: 20px;
+  margin-right: 10px;
+}
+
+hr {
+  color: blueviolet;
+}
+.memo-item { 
+  border-bottom: 0.5px solid green;
+  align-self: center;
+  padding: 0.5rem;
 }
 /* .memo-title {
   border:
@@ -20,9 +39,15 @@
 .memo-box {
   display: flex;
   flex-direction: column;
-
+  margin: 1rem 
+  
 }
 
+.title {
+  margin: 5px ;
+}
 .memo-field {
-  width: 100%;
+  width: 98%;
+  height: 80%;
+  margin-top: 10px;
 }
