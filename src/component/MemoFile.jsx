@@ -10,7 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 
 const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) => {
-    console.log("titleProps;",contentsProps)
+    console.log("contentsProps;",contentsProps)
     console.log("currentProps2;",currentProps)
     // const [currentContent, setCurrentContent] = useState('')
 
@@ -22,7 +22,7 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
     const clickHandler = (title, contents, id) => {
         console.log("title", title);
         console.log("content", contents);
-        updateContents({title:title, contents: contents, id: id})
+        setContents({title:title, contents: contents, id: id,  boolean: false})
     }
 
     console.log("SSSSS: ", contentsProps);
@@ -44,6 +44,7 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
                     </li>
 
                     ))
+                    // contentsProps.title
                 }
             </ul>
         </div>
@@ -76,4 +77,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(MemoFile)
 //       toDoList: state.toDoList,
 //     }
 //   }
-//style={{borderBottom:"solid"}}
+//style={{borderBottom:solid"}}

@@ -5,3 +5,5 @@ import { persistStore } from 'redux-persist'
 
 export const store = createStore(rootReducer)
 export const persistor = persistStore(store)
+
+persistor.purge()

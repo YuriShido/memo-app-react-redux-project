@@ -1,15 +1,15 @@
-import { ADD_CONTENTS, SET_CONTENTS, UPDATE_CONTENTS } from './actions'
+import { ADD_CONTENTS, SET_CONTENTS, UPDATE_CONTENTS, DELETE_ITEM} from './actions'
 
 const INITIAL_STATE = {
     memoList: [
         {
-            id:"",
+            id:0,
             title: "Test",
             contents: "料理レシピ",
 
         },
         {
-            id:"",
+            id:1,
             title: "Check2",
             contents: "Difficult",
 
@@ -78,7 +78,8 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
             memoList: [{...state.memoList[action.payload.id],
               
                 title: action.payload.title,
-                contents: action.payload.contents}]
+                contents: action.payload.contents}],
+                isNew: action.payload.boolean
                 // title: action.payload.title,
                 // contents: action.payload.contents
             
@@ -89,6 +90,19 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
 
         }
 
+        case DELETE_ITEM: 
+            console.log(action.payload,
+                state.memoList);
+            return {
+                ...state,
+                memoList: state.memoList.filter(memo => memo.id !== action.payload.id)
+            }
+
+        //     case CLEAR_FROM_CART:
+        //     return {
+        //     ...state,
+        //     cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
+        // }
         default:
             return state;
     }

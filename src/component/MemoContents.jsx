@@ -1,11 +1,13 @@
 import React, {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
+import { addContents, setContents, updateContents} from '../redux/actions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { addContents, setContents, updateContents} from '../redux/actions';
 import { MemoryRouter } from 'react-router';
 import { Update } from '@material-ui/icons';
+import Button from '@material-ui/core/Button';
+
 
 
 
@@ -14,12 +16,13 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
     // デフォルトは空欄かひとつ目のメモの内容が出るようにする
     const [title, setTitle] = useState('')
     const [memo, setMemo ]  = useState('')
-    const [current, setCurrent] = useState('')
+    const [current, setCurrent] = useState(currentProps)
 
     console.log("inNewProps:", isNewProps);
 
     useEffect(() => {
         setCurrent(currentProps)
+        console.log("InuseEffect", current);
     }, [currentProps])
 
     const handleTitleChange = (e) => {
@@ -46,11 +49,15 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
     return (
         <>
         <form >
-        <TextField onChange={handleTitleChange} className="title" id="standard-basic"  defaultValue={current.title} />
+        <TextField onChange={handleTitleChange} className="title" id="standard-basic"  value={current.title} />
         {/* タイトルファイルのとこ押すとフォームの中身がメモの内容で見れるようにする */}
-        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30" value={current.contents} ></textarea>
-        {/* cols="80" rows="30" */}
-        { isNewProps? (<button onClick={ ()=>clickHandler(title,memo, true)}>Add</button>):(<button onClick={ ()=>clickHandler(title,memo, false)}>Update</button>)}
+        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30"  defaultValue={current.contents}></textarea>
+       
+        { isNewProps ?
+        (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>) :
+        (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title,memo, false)}>Update</Button>)
+        }
+        {/* { isNewProps ? (<button onClick={ ()=>clickHandler(title, memo, true)}>Add</button>):(<button onClick={ ()=>clickHandler(title,memo, false)}>Update</button>)} */}
              
         
       </form>
