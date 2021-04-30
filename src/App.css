@@ -1,6 +1,6 @@
 .app-title {
   text-align: center;
-  
+  /* background-color: aqua; */
 }
 
 .header {
@@ -49,9 +49,16 @@ hr {
 
 .title {
   margin: 5px ;
+  width: 20rem;
 }
 .memo-field {
   width: 98%;
-  height: 80%;
+  height: 60%;
   margin-top: 10px;
+  background-color: rgb(243, 241, 129);
+  font-size: 16px;
+}
+
+.button {
+  margin-left: 2rem;
 }

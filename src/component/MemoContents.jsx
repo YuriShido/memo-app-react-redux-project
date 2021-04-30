@@ -40,8 +40,9 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
 
     const clickHandler = (title, memo, isAdd) => {
         if(isAdd) {
-            addContents({title: title, contents: memo})
+            addContents({id: contentsProps.length, title: title, contents: memo})
         } else {
+
             updateContents({title: title, contents: memo})
         }
     }
@@ -49,14 +50,19 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
     return (
         <>
         <form >
-        <TextField onChange={handleTitleChange} className="title" id="standard-basic"  value={current.title} />
-        {/* タイトルファイルのとこ押すとフォームの中身がメモの内容で見れるようにする */}
-        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30"  defaultValue={current.contents}></textarea>
-       
-        { isNewProps ?
+        <TextField onChange={handleTitleChange} className="title" id="standard-basic"  value={current.title} onChange={(e)=> setCurrent((prevProps) => {
+            return {
+                ...prevProps,
+                title: e.target.value
+            }
+        })} />
+        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="30" rows="30"  defaultValue={current.contents}></textarea>
+        <Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>
+        <Button variant="outlined" color="primary" className="button" onClick={ ()=>clickHandler(title,memo, false)}>Update</Button>
+        {/* { isNewProps ?
         (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>) :
         (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title,memo, false)}>Update</Button>)
-        }
+        } */}
         {/* { isNewProps ? (<button onClick={ ()=>clickHandler(title, memo, true)}>Add</button>):(<button onClick={ ()=>clickHandler(title,memo, false)}>Update</button>)} */}
              
         

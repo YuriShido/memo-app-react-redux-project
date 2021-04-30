@@ -62,33 +62,47 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
         
         case UPDATE_CONTENTS:
 
-        const newState2 = {...state}
-        // newState2.memoList[action.payload.id].title = action.payload.title
-        // newState2.memoList[action.payload.id].contents = action.payload.contents
+        const newMemoList = state.memoList.map((memo) => {
+            if(memo.id === action.payload.id){
+                return{
+                    ...memo,
+                    [action.payload]: action.payload
+                }
+            }
+        })
 
         return {
-            // ...state,
-            // memoList: {
-            //     title: action.payload.title,
-            //     contents: action.payload.contents
-            // },
-            // isNew: false
-
             ...state,
-            memoList: [{...state.memoList[action.payload.id],
-              
-                title: action.payload.title,
-                contents: action.payload.contents}],
-                isNew: action.payload.boolean
-                // title: action.payload.title,
-                // contents: action.payload.contents
-            
-
-            
-            // ...newState2
-
-
+            memoList: newMemoList
         }
+
+        // const newState2 = {...state}
+        // // newState2.memoList[action.payload.id].title = action.payload.title
+        // // newState2.memoList[action.payload.id].contents = action.payload.contents
+
+        // console.log("updateAction",state.memoList[action.payload.id]);
+        // return {
+        //     // ...state,
+        //     // memoList: {
+        //     //     title: action.payload.title,
+        //     //     contents: action.payload.contents
+        //     // },
+        //     // isNew: false
+        //     ...state,
+        //     memoList: [{...state.memoList[action.payload.id],
+              
+        //         title: action.payload.title,
+        //         contents: action.payload.contents}],
+        //         isNew: false
+        //         // title: action.payload.title,
+        //         // contents: action.payload.contents
+            
+
+            
+        //     // ...newState2
+
+
+        // }
 
         case DELETE_ITEM: 
             console.log(action.payload,
