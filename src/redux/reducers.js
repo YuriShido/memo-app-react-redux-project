@@ -32,7 +32,7 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
             // const newState = { ...state }
             // newState.memoList.push(action.payload)
             // console.log("STATE IN ADD: ", newState);
-            // console.log("SSTTAATTEE: ", state);
+            console.log("payload: ", action.payload);
             // return {
             //     ...state,
             //     ...newState
@@ -63,6 +63,8 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
         case UPDATE_CONTENTS:
 
         const newMemoList = state.memoList.map((memo) => {
+            console.log("Memo;",memo)
+            console.log("action", action.payload);
             if(memo.id === action.payload.id){
                 return{
                     ...memo,

@@ -5,7 +5,7 @@ import { addContents, setContents, updateContents} from '../redux/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { MemoryRouter } from 'react-router';
-import { Update } from '@material-ui/icons';
+import { CropSquareRounded, Update } from '@material-ui/icons';
 import Button from '@material-ui/core/Button';
 
 
@@ -22,6 +22,7 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
 
     useEffect(() => {
         setCurrent(currentProps)
+        console.log(currentProps);
         console.log("InuseEffect", current);
     }, [currentProps])
 
@@ -31,19 +32,32 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
         console.log('title: ', title);
     }
 
-    const handleMemoChange = (e) => {
-        e.preventDefault()
-        setMemo(e.target.value)
-        console.log("memo:", memo);
+    // const handleMemoChange = (e) => {
+    //     e.preventDefault()
+    //     return {
+    //         ...pre
+    //     }
+    //     setMemo(e.target.value)
+    //     console.log("memo:", memo);
 
+    // }
+    const handleMemoChange = (e) => {
+        setCurrent((prevProps) => {
+            return {
+                ...prevProps,
+                contents: e.target.value
+            }
+        })
     }
 
-    const clickHandler = (title, memo, isAdd) => {
+    const clickHandler = (title, memo, isAdd, id=null) => {
         if(isAdd) {
-            addContents({id: contentsProps.length, title: title, contents: memo})
+            addContents({id: contentsProps.length, title: current.title, contents: current.contents})
         } else {
+            console.log("updatetitle",title);
+            console.log("updacontent",memo);
 
-            updateContents({title: title, contents: memo})
+            updateContents({title: title, contents: memo, id: id})
         }
     }
 
@@ -56,9 +70,10 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
                 title: e.target.value
             }
         })} />
+        {/* <input onChange={handleTitleChange} className="title" id="standard-basic"  value={current.title}></input> */}
         <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="30" rows="30"  defaultValue={current.contents}></textarea>
         <Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>
-        <Button variant="outlined" color="primary" className="button" onClick={ ()=>clickHandler(title,memo, false)}>Update</Button>
+        <Button variant="outlined" color="primary" className="button" onClick={ ()=>clickHandler(current.title,current.contents, false, currentProps.id)}>Update</Button>
         {/* { isNewProps ?
         (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>) :
         (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title,memo, false)}>Update</Button>)

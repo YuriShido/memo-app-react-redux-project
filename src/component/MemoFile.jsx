@@ -22,6 +22,7 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
     const clickHandler = (title, contents, id) => {
         console.log("title", title);
         console.log("content", contents);
+        console.log("ID", id);
         setContents({title:title, contents: contents, id: id,  boolean: false})
     }
 
