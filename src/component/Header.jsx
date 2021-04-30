@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { connect } from 'react-redux'
-import { addContents, setContents } from '../redux/actions';
+import { addContents, setContents, updateContents } from '../redux/actions';
 
 import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
@@ -8,10 +8,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
 import SearchIcon from '@material-ui/icons/Search';
 
-const Header = ({currentProps, setContents}) => {
-
-    const clickHandler = (currentProps) => {
-        setContents(currentProps)
+const Header = ({currentProps, setContents, updateContents}) => {
+    
+    const clickHandler = () => {
+        console.log("handler");
+        setContents({title:"", contents:""})
     }
 
     return (
@@ -37,8 +38,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addContents: (contens) => dispatch(addContents(contens)),
-    setContents:  (content) => dispatch(setContents(content))
-
+    setContents:  (content) => dispatch(setContents(content)),
+    updateContents: (content) => dispatch(updateContents(content))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

@@ -3,17 +3,20 @@ import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { addContents, setContents} from '../redux/actions';
+import { addContents, setContents, updateContents} from '../redux/actions';
 import { MemoryRouter } from 'react-router';
+import { Update } from '@material-ui/icons';
 
 
 
-const MemoContents = ({contentsProps, addContents, setContents, currentProps}) => {
+const MemoContents = ({contentsProps, addContents, setContents, currentProps, isNewProps, updateContents}) => {
     // メモの内容が変わった時にstateのリストに追加と更新をする
     // デフォルトは空欄かひとつ目のメモの内容が出るようにする
     const [title, setTitle] = useState('')
     const [memo, setMemo ]  = useState('')
     const [current, setCurrent] = useState('')
+
+    console.log("inNewProps:", isNewProps);
 
     useEffect(() => {
         setCurrent(currentProps)
@@ -32,18 +35,24 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps}) =
 
     }
 
-    const clickHandler = (title, memo) => {
-        addContents({title: title, contents: memo})
+    const clickHandler = (title, memo, isAdd) => {
+        if(isAdd) {
+            addContents({title: title, contents: memo})
+        } else {
+            updateContents({title: title, contents: memo})
+        }
     }
 
     return (
         <>
         <form >
-        <TextField onChange={handleTitleChange} className="title" id="standard-basic" label="Title" value={current.title} />
+        <TextField onChange={handleTitleChange} className="title" id="standard-basic"  defaultValue={current.title} />
         {/* タイトルファイルのとこ押すとフォームの中身がメモの内容で見れるようにする */}
-        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30" defaultValue={current.contents} ></textarea>
+        <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="60" rows="30" value={current.contents} ></textarea>
         {/* cols="80" rows="30" */}
-        <button onClick={ ()=>clickHandler(title,memo)}>Add</button>
+        { isNewProps? (<button onClick={ ()=>clickHandler(title,memo, true)}>Add</button>):(<button onClick={ ()=>clickHandler(title,memo, false)}>Update</button>)}
+             
+        
       </form>
 
          {/* <div className="memo-box">
@@ -57,15 +66,17 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps}) =
 
 const mapStateToProps = (state) => ({
     contentsProps: state.contents.memoList,
-    currentProps: state.contents.currentMemo
-
+    currentProps: state.contents.currentMemo,
+    isNewProps: state.contents.isNew
+    
 })
 
 const mapDispatchToProps = (dispatch) => {
     // console.log(addContents);
     return ({
     addContents: (contents) => dispatch(addContents(contents)),
-    setContents: (contents) => dispatch(setContents(contents))
+    setContents: (contents) => dispatch(setContents(contents)),
+    updateContents: (contents) => dispatch(updateContents(contents))
 })}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MemoContents)
