@@ -2,12 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux'
 import {setContents, updateContents} from '../redux/actions'
 
-import { Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Icon from '@material-ui/core/Icon';
-import SearchIcon from '@material-ui/icons/Search';
-
 
 const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) => {
     console.log("contentsProps;",contentsProps)
@@ -41,7 +35,6 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
                     contentsProps.map(({title,  contents }, id )=> (
                     <li key={id} className="memo-item" onClick={() => clickHandler(title, contents, id)} >
                         {title}
-                        {/* <hr />  */}
                     </li>
 
                     ))
@@ -73,9 +66,3 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(MemoFile)
 
 
-// const mapStateToProps = (state) => {
-//     return {
-//       toDoList: state.toDoList,
-//     }
-//   }
-//style={{borderBottom:solid"}}

@@ -1,5 +1,12 @@
+.App {
+  /* background-color: rgb(253, 232, 206); */
+
+}
+
 .app-title {
   text-align: center;
+  margin: 0;
+  padding: 1.5rem;
   /* background-color: aqua; */
 }
 
@@ -20,6 +27,7 @@
 .memo-file-container{
   width: 35%;
   /* text-align: center; */
+  /* background-color: aquamarine; */
 }
 
 .memo {
@@ -40,23 +48,19 @@ hr {
   border:
 } */
 
-.memo-box {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 
-  
-}
 
 .title {
   margin: 5px ;
   width: 20rem;
 }
+
+
 .memo-field {
   width: 98%;
   height: 60%;
   margin-top: 10px;
-  background-color: rgb(243, 241, 129);
   font-size: 16px;
+  background-color: rgb(253, 252, 177);
 }
 
 .button {

@@ -23,15 +23,8 @@ const Header = ({currentProps, setContents, updateContents, deleteContents}) => 
 
     return (
         <div className="header">
-            {/* style={{float:"right", marginRight:"5rem"}} */}
-        {/* <Icon color="primary">add_circle</Icon> */}
-        {/* <Fab color="primary" aria-label="add"> */}
         <AddIcon onClick={clickHandler}/>
-        {/* </Fab> */}
-            {/* <SearchIcon /> */}
-        {/* <Fab color="primary" > */}
             <DeleteIcon onClick={removeHandler}/>
-        {/* </Fab> */}
        
         </div>
     )
