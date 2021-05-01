@@ -39,7 +39,8 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
             // }
             return {
                 ...state,
-                memoList: [...state.memoList, action.payload]
+                memoList: [...state.memoList, action.payload],
+                isNew: action.payload.isNew
             }
 
         // ...state, 
@@ -48,7 +49,7 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
         //         contents: addContents(state.contents)}]
 
         case SET_CONTENTS:
-
+            console.log('setContentPayload:',action.payload);
             return {
                 ...state,
                 currentMemo: {
@@ -56,7 +57,7 @@ const ContentsReducer = (state = INITIAL_STATE, action) => {
                     title: action.payload.title,
                     contents: action.payload.contents
                 },
-                isNew: true
+                isNew: action.payload.isNew
                 
             }
         

@@ -12,12 +12,12 @@ const Header = ({currentProps, setContents, updateContents, deleteContents}) => 
     
     const clickHandler = () => {
         console.log("handler");
-        setContents({title:"", contents:""})
+        setContents({title:"", contents:"", isNew: true})
     }
 
     const removeHandler = () => {
         deleteContents(currentProps)
-        setContents({title:"", contents:""})
+        setContents({title:"", contents:"", isNew: true})
         console.log('delete;', currentProps.id)
     }
 

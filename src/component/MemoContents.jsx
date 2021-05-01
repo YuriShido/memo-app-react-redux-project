@@ -7,8 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { CropSquareRounded, Update } from '@material-ui/icons';
 import Button from '@material-ui/core/Button';
-
-
+import { green } from '@material-ui/core/colors';
 
 
 const MemoContents = ({contentsProps, addContents, setContents, currentProps, isNewProps, updateContents}) => {
@@ -45,14 +44,15 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
         setCurrent((prevProps) => {
             return {
                 ...prevProps,
-                contents: e.target.value
+                contents: e.target.value,
             }
         })
+        
     }
 
     const clickHandler = (title, memo, isAdd, id=null) => {
         if(isAdd) {
-            addContents({id: contentsProps.length, title: current.title, contents: current.contents})
+            addContents({id: contentsProps.length, title: current.title, contents: current.contents, isNew: false})
         } else {
             console.log("updatetitle",title);
             console.log("updacontent",memo);
@@ -68,19 +68,18 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
             return {
                 ...prevProps,
                 title: e.target.value
+                
             }
         })} />
         
         <textarea className="memo-field" onChange={handleMemoChange} name="" id="" cols="30" rows="30"  value={current.contents}></textarea>
-        <Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>
-        <Button variant="outlined" color="primary" className="button" onClick={ ()=>clickHandler(current.title,current.contents, false, currentProps.id)}>Update</Button>
-        {/* { isNewProps ?
-        (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>) :
-        (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title,memo, false)}>Update</Button>)
-        } */}
-        {/* { isNewProps ? (<button onClick={ ()=>clickHandler(title, memo, true)}>Add</button>):(<button onClick={ ()=>clickHandler(title,memo, false)}>Update</button>)} */}
+        {
+            isNewProps?
+            (<Button variant="contained" color="primary" onClick={ ()=>clickHandler(title, memo, true)}>Add</Button>) :
+            (<Button variant="contained" color="secondary" className="button" onClick={ ()=>clickHandler(current.title,current.contents, false, currentProps.id)}>Update</Button>)
+        }
+    
       </form>
-
         </>
     )
 }

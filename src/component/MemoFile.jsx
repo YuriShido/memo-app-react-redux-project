@@ -17,7 +17,8 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
         console.log("title", title);
         console.log("content", contents);
         console.log("ID", id);
-        setContents({title:title, contents: contents, id: id,  boolean: false})
+        // console.log("isNewProps:", isNew);
+        setContents({title:title, contents: contents, id: id,  isNew: false})
     }
 
     console.log("SSSSS: ", contentsProps);
@@ -52,7 +53,7 @@ const mapStateToProps = (state) => {
     console.log("memoStateee; ",state);
     return {
         contentsProps: state.contents.memoList,
-        currentProps: state.contents.currentMemo
+        currentProps: state.contents.currentMemo,
     }
 }
 
