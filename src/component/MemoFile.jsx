@@ -21,7 +21,7 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
         setContents({title:title, contents: contents, id: id,  isNew: false})
     }
 
-    console.log("SSSSS: ", contentsProps);
+    console.log("ContentsPropsInMemofile: ", contentsProps);
 
     return(
     <div className="memo-file-container">
@@ -30,8 +30,8 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
         <div className="memo-file">
 
             <ul className="memo">
-            
             {/* onclick functionでクリックしたら右のコンポーネントに出力できるようにする */}
+               
                 {
                     contentsProps.map(({title,  contents }, id )=> (
                     <li key={id} className="memo-item" onClick={() => clickHandler(title, contents, id)} >
@@ -39,8 +39,19 @@ const MemoFile = ({contentsProps, setContents, currentProps, updateContents}) =>
                     </li>
 
                     ))
-                    // contentsProps.title
                 }
+            
+            {/* {
+                contentsProps.lenght ?
+                (contentsProps.map(({title,  contents }, id )=> (
+                        <li key={id} className="memo-item" onClick={() => clickHandler(title, contents, id)} >
+                    {title}
+                </li>
+                ))
+                ) :
+                (<li>There are no Memo yet!</li>) 
+                
+            }  */}
             </ul>
         </div>
 

@@ -26,11 +26,7 @@ const Header = ({currentProps, setContents, updateContents, deleteContents}) => 
         }
     
     }
-    // const removeHandler = () => {
-    //     deleteContents(currentProps)
-    //     setContents({title:"", contents:"", isNew: true})
-    //     console.log('delete;', currentProps)
-    // }
+
 
     return (
         <div className="header">

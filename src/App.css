@@ -18,6 +18,7 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  /* flex-wrap: wrap; */
 }
 
 .memo-list {
@@ -66,7 +67,31 @@ hr {
 .button {
   margin-left: 2rem;
 }
+@media (max-width: 770px) {
+  .main {
+    flex-wrap: wrap;
+  }
+  .memo-file-container {
+    width: 50%;
+  }
+}
+@media (max-width: 480px) {
 
-@media screen {
-  
+
+  .memo-file-container{
+    width: 70%;
+    /* text-align: center; */
+    /* background-color: aquamarine; */
+  }
+
+  .memo-field {
+    width: 90%;
+    height: 30%;
+    
+  }
+
+  .memo-box {
+    justify-content: center;
+    text-align: center;
+  }
 }
