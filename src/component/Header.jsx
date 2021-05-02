@@ -15,11 +15,22 @@ const Header = ({currentProps, setContents, updateContents, deleteContents}) => 
         setContents({title:"", contents:"", isNew: true})
     }
 
+    //削除するときにこのタイトル消していいかのアラート出すif文使ってｏｋなら消す
     const removeHandler = () => {
-        deleteContents(currentProps)
-        setContents({title:"", contents:"", isNew: true})
-        console.log('delete;', currentProps.id)
+        const check =  window.confirm(`Do you want to delete Memo title: ${currentProps.title}?`)
+        if(check) {
+            console.log("delete:",currentProps);
+            deleteContents(currentProps)
+            setContents({title:"", contents:"", isNew: true})
+
+        }
+    
     }
+    // const removeHandler = () => {
+    //     deleteContents(currentProps)
+    //     setContents({title:"", contents:"", isNew: true})
+    //     console.log('delete;', currentProps)
+    // }
 
     return (
         <div className="header">
