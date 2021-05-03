@@ -3,11 +3,11 @@ import React, {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import { addContents, setContents, updateContents} from '../redux/actions';
 
-import { makeStyles } from '@material-ui/core/styles';
+
 import TextField from '@material-ui/core/TextField';
 import { CropSquareRounded, Update } from '@material-ui/icons';
 import Button from '@material-ui/core/Button';
-import { green } from '@material-ui/core/colors';
+
 
 
 const MemoContents = ({contentsProps, addContents, setContents, currentProps, isNewProps, updateContents}) => {
@@ -60,11 +60,11 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
             updateContents({title: title, contents: memo, id: id})
         }
     }
-
+    // onChange={handleTitleChange} 
     return (
         <>
         <form className="memo-box">
-        <TextField onChange={handleTitleChange} className="title" id="standard-basic" label="Title" value={current.title} onChange={(e)=> setCurrent((prevProps) => {
+        <TextField className="title" id="standard-basic" label="Title" value={current.title} onChange={(e)=> setCurrent((prevProps) => {
             return {
                 ...prevProps,
                 title: e.target.value

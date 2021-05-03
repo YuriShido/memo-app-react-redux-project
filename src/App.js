@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import MemoFile from './component/MemoFile'
 import MemoContents from './component/MemoContents'

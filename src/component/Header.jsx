@@ -1,12 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { addContents, setContents, updateContents, deleteContents} from '../redux/actions';
 
-import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Icon from '@material-ui/core/Icon';
-import SearchIcon from '@material-ui/icons/Search';
+
 
 const Header = ({currentProps, setContents, updateContents, deleteContents}) => {
     
