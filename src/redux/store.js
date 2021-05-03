@@ -7,4 +7,4 @@ export const store = createStore(rootReducer)
 export const persistor = persistStore(store)
 
 //reset data
-// persistor.purge()
+persistor.purge()
