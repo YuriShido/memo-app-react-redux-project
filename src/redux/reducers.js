@@ -4,16 +4,11 @@ const INITIAL_STATE = {
     memoList: [
         {
             id:0,
-            title: "Test",
-            contents: "Do landry",
+            title: "Sample",
+            contents: "Write down your memo here!!!",
 
         },
-        {
-            id:1,
-            title: "Check2",
-            contents: "Why this is so Difficult!!!!!",
-
-        }
+       
     ],
     currentMemo: {
         id: "",
