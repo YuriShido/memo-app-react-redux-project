@@ -5,7 +5,6 @@ import { addContents, setContents, updateContents} from '../redux/actions';
 
 
 import TextField from '@material-ui/core/TextField';
-import { CropSquareRounded, Update } from '@material-ui/icons';
 import Button from '@material-ui/core/Button';
 
 
@@ -25,11 +24,11 @@ const MemoContents = ({contentsProps, addContents, setContents, currentProps, is
         console.log("InuseEffect", current);
     }, [currentProps])
 
-    const handleTitleChange = (e) => {
-        e.preventDefault()
-        setTitle(e.target.value)
-        console.log('title: ', title);
-    }
+    // const handleTitleChange = (e) => {
+    //     e.preventDefault()
+    //     setTitle(e.target.value)
+    //     console.log('title: ', title);
+    // }
 
     // const handleMemoChange = (e) => {
     //     e.preventDefault()

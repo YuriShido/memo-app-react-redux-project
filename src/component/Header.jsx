@@ -1,13 +1,25 @@
 import React from 'react'
+import { Link} from 'react-router-dom';
 import { connect } from 'react-redux'
 import { addContents, setContents, updateContents, deleteContents} from '../redux/actions';
+// import MemoCard from './MemoCard'
+import { makeStyles } from '@material-ui/core/styles';
 
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
+const useStyles = makeStyles({
+    root: {
+      color:'black',
+    },
+    
+});
 
 const Header = ({currentProps, setContents, updateContents, deleteContents}) => {
     
+    const classes = useStyles();
+
     const clickHandler = () => {
         console.log("handler");
         setContents({title:"", contents:"", isNew: true})
@@ -25,15 +37,18 @@ const Header = ({currentProps, setContents, updateContents, deleteContents}) => 
     
     }
 
-
     return (
+    
         <div className="header">
-        <AddIcon onClick={clickHandler}/>
+            <AddIcon onClick={clickHandler}/>
             <DeleteIcon onClick={removeHandler}/>
-       
+            <Link to="/card"><ViewModuleIcon className={classes.root}/></Link>
+            {/* <ViewModuleIcon /> */}
         </div>
+    
     )
 }
+
 
 const mapStateToProps = (state) => ({
     contentsProps: state.contents.memoList,

@@ -1,20 +1,23 @@
 
 import './App.css';
-import MemoFile from './component/MemoFile'
-import MemoContents from './component/MemoContents'
-import Header from './component/Header'
+import MemoTop from './component/MemoTop'
+// import MemoFile from './component/MemoFile'
+// import MemoContents from './component/MemoContents'
+// import Header from './component/Header'
+import MemoCard from './component/MemoCard'
+
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
+
 
 function App() {
   return (
     <div className="App">
-      <h1 className="app-title">Memo</h1>
-      <Header />
-
-      <div className="main">
-      <MemoFile />
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-      <MemoContents />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={MemoTop} />
+          <Route path="/card" component={MemoCard} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import {setContents, updateContents} from '../redux/actions'
 
